@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, JSX } from "react";
 import { ChevronRight } from "lucide-react";
 
 export default function Penjelasan(): JSX.Element {
@@ -8,7 +8,7 @@ export default function Penjelasan(): JSX.Element {
   const contentRef = useRef<HTMLDivElement>(null);
   const [height, setHeight] = useState<string>("0px");
 
-  // Update height setiap expanded berubah
+  // Update height setiap  expanded berubah
   useEffect(() => {
     if (contentRef.current) {
       if (expanded) {

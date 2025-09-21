@@ -2,15 +2,11 @@
 
 import { useState, useEffect } from "react";
 import Image from "next/image";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, Variants } from "framer-motion";
 import {
   Menu,
   X,
-  Search,
-  Github,
   ChevronDown,
-  Mail,
-  Phone,
   ArrowRight,
   Building2,
   User,
@@ -105,24 +101,43 @@ export default function ProfessionalNavbarClient() {
     },
   ];
 
-  // Scroll effect
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Lock scroll when mobile menu is open
   useEffect(() => {
     document.body.style.overflow = mobileOpen ? "hidden" : "unset";
   }, [mobileOpen]);
 
-  const dropdownVariants = {
-    open: { opacity: 1, y: 0, scale: 1, transition: { duration: 0.25, ease: [0.23, 1, 0.32, 1], staggerChildren: 0.08, delayChildren: 0.05 } },
-    closed: { opacity: 0, y: -15, scale: 0.95, transition: { duration: 0.2, ease: "easeInOut", staggerChildren: 0.03, staggerDirection: -1 } },
+  // ✅ Variants yang sudah di-typing benar
+  const dropdownVariants: Variants = {
+    open: {
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      transition: {
+        duration: 0.25,
+        ease: [0.23, 1, 0.32, 1] as [number, number, number, number], // tipe benar
+        staggerChildren: 0.08,
+        delayChildren: 0.05,
+      },
+    },
+    closed: {
+      opacity: 0,
+      y: -15,
+      scale: 0.95,
+      transition: {
+        duration: 0.2,
+        ease: "easeInOut",
+        staggerChildren: 0.03,
+        staggerDirection: -1,
+      },
+    },
   };
 
-  const itemVariants = {
+  const itemVariants: Variants = {
     open: { opacity: 1, x: 0, transition: { duration: 0.25, ease: "easeOut" } },
     closed: { opacity: 0, x: -15 },
   };

@@ -22,6 +22,17 @@ const Footer: React.FC<FooterProps> = ({
   companyName = "Your Company",
   year = new Date().getFullYear(),
 }) => {
+  const socialItems = [
+    { icon: <FaFacebookF />, color: "hover:text-blue-500", label: "Facebook" },
+    { icon: <FaTwitter />, color: "hover:text-sky-400", label: "Twitter" },
+    { icon: <FaInstagram />, color: "hover:text-pink-500", label: "Instagram" },
+    { icon: <FaLinkedinIn />, color: "hover:text-blue-600", label: "LinkedIn" },
+    { icon: <FaYoutube />, color: "hover:text-red-500", label: "YouTube" },
+    { icon: <FaGithub />, color: "hover:text-gray-900", label: "GitHub" },
+    { icon: <FaWhatsapp />, color: "hover:text-green-500", label: "WhatsApp" },
+    { icon: <MdEmail />, color: "hover:text-yellow-400", label: "Email" },
+  ];
+
   return (
     <footer className="relative bg-white text-gray-900 overflow-hidden">
       {/* Top gradient border */}
@@ -46,23 +57,15 @@ const Footer: React.FC<FooterProps> = ({
 
             {/* Social Icons */}
             <div className="flex space-x-4">
-              {[
-                { icon: <FaFacebookF />, color: "hover:text-blue-500", label: "Facebook" },
-                { icon: <FaTwitter />, color: "hover:text-sky-400", label: "Twitter" },
-                { icon: <FaInstagram />, color: "hover:text-pink-500", label: "Instagram" },
-                { icon: <FaLinkedinIn />, color: "hover:text-blue-600", label: "LinkedIn" },
-                { icon: <FaYoutube />, color: "hover:text-red-500", label: "YouTube" },
-                { icon: <FaGithub />, color: "hover:text-gray-900", label: "GitHub" },
-                { icon: <FaWhatsapp />, color: "hover:text-green-500", label: "WhatsApp" },
-                { icon: <MdEmail />, color: "hover:text-yellow-400", label: "Email" },
-              ].map((item, idx) => (
+              {socialItems.map((item, idx) => (
                 <a
                   key={idx}
                   href="#"
                   aria-label={item.label}
                   className={`transition transform hover:scale-110 ${item.color}`}
                 >
-                  {React.cloneElement(item.icon as React.ReactElement, { size: 22 })}
+                  {React.isValidElement(item.icon) &&
+                    React.cloneElement(item.icon as React.ReactElement<{ size?: number }>, { size: 22 })}
                 </a>
               ))}
             </div>

@@ -1,10 +1,22 @@
 "use client";
 
-import { useRef, useEffect, useState } from "react";
+import { useRef, useEffect, useState, ReactNode } from "react";
 import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion";
-import { TypographyH1 } from "./TypographyH1";
 import { ChevronDownIcon } from "@heroicons/react/24/solid";
 
+// ------------------------------------------------
+// TypographyH1: pastikan menerima children
+interface TypographyH1Props {
+  className?: string;
+  children: ReactNode;
+}
+
+export function TypographyH1({ className, children }: TypographyH1Props) {
+  return <h1 className={className}>{children}</h1>;
+}
+
+// ------------------------------------------------
+// Utilities
 const splitText = (text: string) => text.split("");
 
 // Konten slide
@@ -18,7 +30,15 @@ const slide = {
 };
 
 // Animated Title per huruf
-const AnimatedTitle = ({ text, speed = 0.002, className = "" }: { text: string; speed?: number; className?: string }) => (
+const AnimatedTitle = ({
+  text,
+  speed = 0.002,
+  className = "",
+}: {
+  text: string;
+  speed?: number;
+  className?: string;
+}) => (
   <span className={`inline-block ${className} tracking-tight`}>
     {splitText(text).map((char, i) => (
       <motion.span
@@ -46,7 +66,9 @@ const AnimatedParagraph = ({ text }: { text: string }) => (
   </motion.p>
 );
 
-export default function VisiMisi(): JSX.Element {
+// ------------------------------------------------
+// Komponen Utama
+export default function VisiMisi() {
   const ref = useRef<HTMLDivElement>(null);
   const [isExpanded, setIsExpanded] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
@@ -58,7 +80,10 @@ export default function VisiMisi(): JSX.Element {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end start"] });
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start end", "end start"],
+  });
 
   // Parallax effects
   const textOpacity = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0, 1, 1, 0]);
@@ -78,10 +103,7 @@ export default function VisiMisi(): JSX.Element {
 
       <div className="relative z-20 flex flex-col lg:flex-row items-center w-full max-w-7xl">
         {/* TEKS */}
-        <motion.div
-          style={{ opacity: textOpacity, y: textY }}
-          className="w-full lg:w-1/2 space-y-6 max-w-2xl lg:pr-16"
-        >
+        <motion.div style={{ opacity: textOpacity, y: textY }} className="w-full lg:w-1/2 space-y-6 max-w-2xl lg:pr-16">
           <TypographyH1 className="text-3xl sm:text-4xl lg:text-6xl leading-tight text-center lg:text-left">
             <AnimatedTitle
               text={slide.title}
@@ -134,12 +156,7 @@ export default function VisiMisi(): JSX.Element {
                      lg:absolute lg:right-[-28vw] lg:top-1/2 lg:-translate-y-1/2 
                      overflow-hidden rounded-l-2xl shadow-xl"
         >
-          <img
-            src={slide.image}
-            alt={slide.title}
-            loading="lazy"
-            className="w-full h-full object-cover object-center"
-          />
+          <img src={slide.image} alt={slide.title} loading="lazy" className="w-full h-full object-cover object-center" />
           <div className="absolute inset-0 bg-gradient-to-l from-white/40 via-white/20 to-transparent" />
         </motion.div>
       </div>
