@@ -7,8 +7,8 @@ import StrukturJob from "./home/components/conten/StrukturJob";
 import BlogSection from "./home/blog/BlogSection";
 import Footer from "./home/components/footer/footer";
 import TentangKami from "./home/components/conten/TentangKami";
-import Portofolio from "./home/components/conten/Portofolio2";
-import Portofolio2 from "./home/components/conten/Portofolio";
+import Portofolio2 from "./home/components/conten/Portofolio2";
+import Portofolio from "./home/components/conten/Portofolio";
 import Lokasi from "./home/components/conten/Lokasi";
 import Produk from "./home/components/conten/Produk";
 
@@ -51,8 +51,9 @@ export default function HomePage() {
 
         {/* Portofolio */}
         <div ref={portofolioRef}>
+        <Portofolio2 />
           <Portofolio />
-          <Portofolio2 />
+          
         </div>
 
         <div ref={produkRef}><Produk /></div>
