@@ -10,7 +10,8 @@ import TentangKami from "./home/components/conten/TentangKami";
 import Portofolio2 from "./home/components/conten/Portofolio2";
 import Portofolio from "./home/components/conten/Portofolio";
 import Lokasi from "./home/components/conten/Lokasi";
-import Produk from "./home/components/conten/Produk";
+
+import Produk from './home/components/conten/Produk';
 
 export default function HomePage() {
   const heroRef = useRef<HTMLDivElement>(null);
