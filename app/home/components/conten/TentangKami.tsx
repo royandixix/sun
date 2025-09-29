@@ -82,7 +82,7 @@ export default function TentangKami() {
             bagi setiap mitra.
           </p>
 
-          {/* CTA Button */}
+          {/* CTA Button
           <div className="mt-10">
             <a
               href="#portfolio"
@@ -104,7 +104,7 @@ export default function TentangKami() {
                 />
               </svg>
             </a>
-          </div>
+          </div> */}
         </motion.div>
       </div>
     </section>
