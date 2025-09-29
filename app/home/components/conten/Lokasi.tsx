@@ -1,5 +1,5 @@
 import React from "react";
-import { motion } from "framer-motion";
+import { motion, Variants, easeOut } from "framer-motion";
 
 const Lokasi: React.FC = () => {
   const location = {
@@ -12,7 +12,7 @@ const Lokasi: React.FC = () => {
       "kolaborasi, maupun layanan pelanggan.",
   };
 
-  const containerVariants = {
+  const containerVariants: Variants = {
     hidden: {},
     visible: {
       transition: {
@@ -21,21 +21,21 @@ const Lokasi: React.FC = () => {
     },
   };
 
-  const itemVariants = {
+  const itemVariants: Variants = {
     hidden: { opacity: 0, y: 50 },
     visible: {
       opacity: 1,
       y: 0,
-      transition: { duration: 0.8, ease: "easeOut" },
+      transition: { duration: 0.8, ease: easeOut }, // ✅ gunakan easeOut dari framer-motion
     },
   };
 
-  const mapVariants = {
+  const mapVariants: Variants = {
     hidden: { opacity: 0, scale: 0.95 },
     visible: {
       opacity: 1,
       scale: 1,
-      transition: { duration: 1, ease: "easeOut", delay: 0.5 },
+      transition: { duration: 1, ease: easeOut, delay: 0.5 }, // ✅ sama di sini
     },
   };
 

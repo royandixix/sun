@@ -1,40 +1,40 @@
 "use client";
 
 import React from "react";
-import { motion } from "framer-motion";
+import { motion, Variants, easeOut, backOut } from "framer-motion";
 import Image from "next/image";
 
 const Hero: React.FC = () => {
   // Variants untuk teks utama
-  const textVariant = {
+  const textVariant: Variants = {
     hidden: { opacity: 0, y: 50 },
     visible: (custom = 0) => ({
       opacity: 1,
       y: 0,
-      transition: { delay: custom, duration: 0.8, ease: "easeOut" },
+      transition: { delay: custom, duration: 0.8, ease: easeOut }, // ✅ pakai easing dari framer-motion
     }),
   };
 
   // Variants untuk list item
-  const listVariant = {
+  const listVariant: Variants = {
     hidden: { opacity: 0, x: -30 },
     visible: (custom = 0) => ({
       opacity: 1,
       x: 0,
-      transition: { delay: custom, duration: 0.6, ease: "easeOut" },
+      transition: { delay: custom, duration: 0.6, ease: easeOut }, // ✅ pakai easing
     }),
   };
 
   // Variants untuk tombol
-  const buttonVariant = {
+  const buttonVariant: Variants = {
     hidden: { opacity: 0, scale: 0.8 },
-    visible: { opacity: 1, scale: 1, transition: { duration: 0.6, ease: "backOut" } },
+    visible: { opacity: 1, scale: 1, transition: { duration: 0.6, ease: backOut } }, // ✅ pakai backOut
   };
 
   // Variants untuk gambar
-  const imageVariant = {
+  const imageVariant: Variants = {
     hidden: { opacity: 0, y: 50, rotate: -5, scale: 0.95 },
-    visible: { opacity: 1, y: 0, rotate: 0, scale: 1, transition: { duration: 1, ease: "easeOut" } },
+    visible: { opacity: 1, y: 0, rotate: 0, scale: 1, transition: { duration: 1, ease: easeOut } }, // ✅ pakai easing
   };
 
   return (
