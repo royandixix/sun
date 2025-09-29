@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 
-export default function produk() {
+export default function Prodak() {
   const produk = [
     {
       id: 1,
