@@ -24,6 +24,7 @@ const poppins = Poppins({
 export const metadata: Metadata = {
   title: "Synergy Utility Network",
   description: "Next.js App with Navbar",
+  
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
