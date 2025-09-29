@@ -10,8 +10,7 @@ import TentangKami from "./home/components/conten/TentangKami";
 import Portofolio2 from "./home/components/conten/Portofolio2";
 import Portofolio from "./home/components/conten/Portofolio";
 import Lokasi from "./home/components/conten/Lokasi";
-
-import produk from './home/components/conten/produk';
+import Produk from './home/components/conten/Produk';
 
 export default function HomePage() {
   const heroRef = useRef<HTMLDivElement>(null);
@@ -57,7 +56,7 @@ export default function HomePage() {
           
         </div>
 
-        <div ref={produkRef}><produk /></div>
+        <div ref={produkRef}><Produk /></div>
         <div ref={strukturRef}><StrukturJob /></div>
 
         <div ref={lokasiRef}><Lokasi /></div>          {/* ✅ Lokasi scroll */}
