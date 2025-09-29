@@ -33,7 +33,7 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts"
-  ],
+, "app/home/components/conten/Produk.tsx"  ],
   "exclude": [
     "node_modules"
   ]

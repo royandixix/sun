@@ -1,52 +1,67 @@
-import type { Metadata } from "next"
-import { Geist, Geist_Mono, Poppins } from "next/font/google"
-import "./globals.css"
-import Navbar from "./home/components/Navbar/Navbar"
+import type { Metadata } from "next";
+import { Geist, Geist_Mono, Poppins } from "next/font/google";
+import "./globals.css";
+import Navbar from "./home/components/Navbar/Navbar";
 
-// Geist font (asli dari kode kamu)
+// Geist font (asli)
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
-})
+});
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
-})
+});
 
-// Tambahan: Poppins font
+// Poppins font (digunakan sebagai font utama ala Laravel Cloud)
 const poppins = Poppins({
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
   variable: "--font-poppins",
-})
+});
 
 export const metadata: Metadata = {
   title: "Synergy Utility Network",
   description: "Next.js App with Navbar",
-}
+};
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode
-}) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${geistSans.variable} ${geistMono.variable} ${poppins.variable}`}>
+    <html
+      lang="en"
+      className={`${geistSans.variable} ${geistMono.variable} ${poppins.variable}`}
+    >
       <head>
         {/* Vendor CSS */}
-        <link href="/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
-        <link href="/assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet" />
+        <link
+          href="/assets/vendor/bootstrap/css/bootstrap.min.css"
+          rel="stylesheet"
+        />
+        <link
+          href="/assets/vendor/bootstrap-icons/bootstrap-icons.css"
+          rel="stylesheet"
+        />
         <link href="/assets/vendor/aos/aos.css" rel="stylesheet" />
-        <link href="/assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet" />
-        <link href="/assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet" />
+        <link
+          href="/assets/vendor/glightbox/css/glightbox.min.css"
+          rel="stylesheet"
+        />
+        <link
+          href="/assets/vendor/swiper/swiper-bundle.min.css"
+          rel="stylesheet"
+        />
 
         {/* Custom CSS */}
         <link href="/assets/css/main.css" rel="stylesheet" />
       </head>
-      <body className={`${geistSans.variable} ${geistMono.variable} ${poppins.variable} antialiased`}>
-        {/* Navbar tetap ada */}
+      <body
+        className={`${geistSans.variable} ${geistMono.variable} ${poppins.variable} antialiased font-sans`}
+      >
+        {/* Navbar */}
         <Navbar />
+
+        {/* Main content */}
         <main className="pt-16">{children}</main>
 
         {/* Scroll Top */}
@@ -73,5 +88,5 @@ export default function RootLayout({
         <script src="/assets/js/main.js"></script>
       </body>
     </html>
-  )
+  );
 }

@@ -1,5 +1,7 @@
 "use client";
 
+import { motion } from "framer-motion";
+
 type Post = {
   id: number;
   title: string;
@@ -73,33 +75,69 @@ const posts: Post[] = [
   },
 ];
 
+// Variants animasi
+const containerVariants = {
+  hidden: {},
+  visible: { transition: { staggerChildren: 0.15 } },
+};
+
+const cardVariants = {
+  hidden: { opacity: 0, y: 40, filter: "blur(4px)" },
+  visible: { opacity: 1, y: 0, filter: "blur(0px)" },
+};
+
+const headerVariants = {
+  hidden: { opacity: 0, y: 20, filter: "blur(4px)" },
+  visible: { opacity: 1, y: 0, filter: "blur(0px)" },
+};
+
 export default function BlogSection() {
   return (
-    <div className="relative py-24 sm:py-32 overflow-hidden">
-      {/* Background */}
-      <div className="absolute inset-0 -z-10 bg-gradient-to-br from-indigo-50 via-blue-100 to-purple-50" />
-      <div className="absolute inset-0 -z-0 bg-[repeating-linear-gradient(45deg,rgba(255,255,255,0.05),rgba(255,255,255,0.05)_1px,transparent_1px,transparent_20px)]" />
-
+    <div className="relative py-24 sm:py-32 overflow-hidden bg-white">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         {/* Header */}
-        <div className="mx-auto max-w-2xl lg:mx-0 text-center lg:text-left">
-          <h2 className="text-4xl sm:text-5xl tracking-tight font-semibold">
+        <motion.div
+          className="mx-auto max-w-2xl lg:mx-0 text-center lg:text-left"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.3 }}
+          variants={headerVariants}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+        >
+          <motion.h2
+            className="text-4xl sm:text-5xl tracking-tight font-semibold"
+            variants={headerVariants}
+          >
             <span className="text-gray-900">Blog </span>
             <span className="bg-gradient-to-r from-purple-500 via-indigo-500 to-blue-500 bg-clip-text text-transparent">
               SUN Network
             </span>
-          </h2>
-          <p className="mt-3 text-lg text-gray-700 max-w-xl">
-            Insight dan berita terbaru seputar Synergy Utility Network – inovasi, kolaborasi, dan transformasi digital di Indonesia maupun global.
-          </p>
-        </div>
+          </motion.h2>
+          <motion.p
+            className="mt-3 text-lg text-gray-700 max-w-xl"
+            variants={headerVariants}
+            transition={{ delay: 0.2 }}
+          >
+            Insight dan berita terbaru seputar Synergy Utility Network – inovasi,
+            kolaborasi, dan transformasi digital di Indonesia maupun global.
+          </motion.p>
+        </motion.div>
 
-        {/* Grid */}
-        <div className="mx-auto mt-10 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 sm:mt-16 lg:mx-0 lg:max-w-none lg:grid-cols-3">
+        {/* Grid Artikel */}
+        <motion.div
+          className="mx-auto mt-10 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 sm:mt-16 lg:mx-0 lg:max-w-none lg:grid-cols-3"
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.3 }}
+        >
           {posts.map((post) => (
-            <article
+            <motion.article
               key={post.id}
-              className="flex flex-col items-start justify-between bg-white/80 backdrop-blur-sm rounded-2xl p-6 shadow-md hover:shadow-xl hover:scale-105 transition-all duration-300"
+              className="flex flex-col items-start justify-between bg-white/90 backdrop-blur-sm rounded-2xl p-6 shadow-md hover:shadow-xl hover:scale-105 transition-all duration-300 cursor-pointer"
+              variants={cardVariants}
+              whileHover={{ y: -5 }}
+              transition={{ type: "spring", stiffness: 200, damping: 20 }}
             >
               <div className="flex items-center gap-x-4 text-xs">
                 <time dateTime={post.datetime} className="text-gray-500">
@@ -107,7 +145,7 @@ export default function BlogSection() {
                 </time>
                 <a
                   href={post.category.href}
-                  className="rounded-full bg-indigo-100/50 px-3 py-1.5 font-medium text-indigo-700 hover:bg-indigo-200"
+                  className="rounded-full bg-indigo-100/50 px-3 py-1.5 font-medium text-indigo-700 hover:bg-indigo-200 transition"
                 >
                   {post.category.title}
                 </a>
@@ -129,7 +167,7 @@ export default function BlogSection() {
                 <img
                   alt={post.author.name}
                   src={post.author.imageUrl}
-                  className="size-10 rounded-full bg-gray-200"
+                  className="h-10 w-10 rounded-full bg-gray-200 object-cover"
                 />
                 <div className="text-sm">
                   <p className="font-semibold text-gray-900">
@@ -138,13 +176,22 @@ export default function BlogSection() {
                   <p className="text-gray-500">{post.author.role}</p>
                 </div>
               </div>
-            </article>
+            </motion.article>
           ))}
-        </div>
+        </motion.div>
 
         {/* CTA */}
-        <div className="mt-14 flex justify-center lg:justify-start">
-          <div className="inline-flex items-center gap-3 bg-gradient-to-r from-purple-500 via-indigo-500 to-blue-500 text-white font-semibold px-8 py-3 rounded-full shadow-md hover:shadow-lg transition-all duration-300 cursor-pointer">
+        <motion.div
+          className="mt-14 flex justify-center lg:justify-start"
+          initial={{ opacity: 0, y: 20, filter: "blur(4px)" }}
+          whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.8, delay: 0.6, ease: "easeOut" }}
+        >
+          <motion.div
+            whileHover={{ scale: 1.05 }}
+            className="inline-flex items-center gap-3 bg-gradient-to-r from-purple-500 via-indigo-500 to-blue-500 text-white font-semibold px-8 py-3 rounded-full shadow-md hover:shadow-lg transition-all duration-300 cursor-pointer"
+          >
             <span>Baca Semua Artikel SUN</span>
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -160,8 +207,8 @@ export default function BlogSection() {
                 d="M9 5l7 7-7 7"
               />
             </svg>
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
       </div>
     </div>
   );

@@ -1,8 +1,23 @@
-import type { NextConfig } from "next";
-
-const nextConfig: NextConfig = {
+const nextConfig = {
   images: {
-    domains: ["images.pexels.com"], // izinkan load gambar dari Pexels
+    domains: ["tailwindcss.com", "images.pexels.com", "source.unsplash.com"],
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "tailwindcss.com",
+        pathname: "/plus-assets/img/**",
+      },
+      {
+        protocol: "https",
+        hostname: "images.pexels.com",
+        pathname: "/**",
+      },
+      {
+        protocol: "https",
+        hostname: "source.unsplash.com",
+        pathname: "/**",
+      },
+    ],
   },
 };
 
